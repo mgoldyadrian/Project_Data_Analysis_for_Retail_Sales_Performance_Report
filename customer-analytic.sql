@@ -1,13 +1,13 @@
-#Customers Transactions per Year
+# Customers Transactions per Year
 
-#DQLab Store wants to know the number of customers who transact every year from 2009 to 2012.
+# DQLab Store wants to know the number of customers who transact every year from 2009 to 2012.
 
-SELECT YEAR(order_date) as years, COUNT(DISTINCT customer) as number_of_customer
+SELECT YEAR(order_date) AS years, COUNT(DISTINCT customer) AS number_of_customer
 FROM dqlab_sales_store
 WHERE order_status = 'Order Finished'
 GROUP BY YEAR(order_date);
 
-#Output
+# Output
 +-------+--------------------+
 | years | number_of_customer |
 +-------+--------------------+
