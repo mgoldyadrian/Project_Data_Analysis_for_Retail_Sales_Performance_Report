@@ -1,11 +1,11 @@
-#Overall Perfomance By Year
+# Overall Perfomance By Year
 
-SELECT YEAR(order_date) as years, SUM(sales) as sales, COUNT(order_quantity) as number_of_order
+SELECT YEAR(order_date) AS years, SUM(sales) AS sales, COUNT(order_quantity) AS number_of_order
 FROM dqlab_sales_store
 WHERE order_status = 'Order Finished'
 GROUP BY YEAR(order_date);
 
-#Output
+# Output
 +-------+------------+-----------------+
 | years | sales      | number_of_order |
 +-------+------------+-----------------+
@@ -15,16 +15,16 @@ GROUP BY YEAR(order_date);
 |  2012 | 4482983158 |            1254 |
 +-------+------------+-----------------+ 
 
-#Overall Perfomance By Product Sub Category
-#Create a Query using SQL to get total sales based on sub categories of products in 2011 and 2012 only
+# Overall Perfomance By Product Sub Category
+# Create a Query using SQL to get total sales based on sub categories of products in 2011 and 2012 only
 
-SELECT YEAR(order_date) as years, product_sub_category, SUM(sales) as sales
+SELECT YEAR(order_date) AS years, product_sub_category, SUM(sales) AS sales
 FROM dqlab_sales_store
-WHERE order_status = 'Order Finished' and YEAR(order_date) in ('2011', '2012')
-GROUP BY YEAR(order_date),product_sub_category
-ORDER BY YEAR(order_date),SUM(sales) DESC;
+WHERE order_status = 'Order Finished' AND YEAR(order_date) IN ('2011', '2012')
+GROUP BY YEAR(order_date), product_sub_category
+ORDER BY YEAR(order_date), SUM(sales) DESC;
 
-#Output
+# Output
 
 +-------+--------------------------------+-----------+
 | years | product_sub_category           | sales     |
