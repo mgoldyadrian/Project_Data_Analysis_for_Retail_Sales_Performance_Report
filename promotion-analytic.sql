@@ -1,23 +1,23 @@
-#Promotion Effectiveness and Efficiency by Years
+# Promotion Effectiveness and Efficiency by Years
 
-#In this section we will analyze the effectiveness and efficiency of the promotions that have been carried out so far
+# In this section we will analyze the effectiveness and efficiency of the promotions that have been carried out so far
 
-#The effectiveness and efficiency of the promotions carried out will be analyzed based on the Burn Rate
-#by comparing the total value of the promotions issued to the total sales obtained
+# The effectiveness and efficiency of the promotions carried out will be analyzed based on the Burn Rate
+# by comparing the total value of the promotions issued to the total sales obtained
 
-#DQLab hopes that the burn rate will still be at the maximum 4.5%
-#Formula for burn rate: (total discount / total sales) * 100
+# DQLab hopes that the burn rate will still be at the maximum 4.5%
+# Formula for burn rate: (total discount / total sales) * 100
 
-#Make Derived Tables 
-#to calculate total sales and total discount (promotion_value) based on years
-#and formulate the percentage of its burn rate (burn_rate_percentage).
+# Make Derived Tables 
+# to calculate total sales and total discount (promotion_value) based on years
+# and formulate the percentage of its burn rate (burn_rate_percentage).
 
-SELECT YEAR(order_date) as  years, SUM(sales) as sales, SUM(discount_value) as promotion_value, ROUND((sum(discount_value)/sum(sales))*100,2) as burn_rate_percentage
+SELECT YEAR(order_date) AS  years, SUM(sales) AS sales, SUM(discount_value) AS promotion_value, ROUND((sum(discount_value)/sum(sales))*100,2) AS burn_rate_percentage
 FROM dqlab_sales_store
 WHERE order_status = 'Order Finished'
 GROUP BY YEAR(order_date);
 
-#Output
+# Output
 +-------+------------+-----------------+----------------------+
 | years | sales      | promotion_value | burn_rate_percentage |
 +-------+------------+-----------------+----------------------+
@@ -28,17 +28,17 @@ GROUP BY YEAR(order_date);
 +-------+------------+-----------------+----------------------+
 
 
-#Promotion Effectiveness and Efficiency by Product Sub Category
+# Promotion Effectiveness and Efficiency by Product Sub Category
 
-#In this section we will analyze the effectiveness and efficiency of the promotions that have been carried out during 2012.
+# In this section we will analyze the effectiveness and efficiency of the promotions that have been carried out during 2012.
 
-SELECT YEAR(order_date) as  years, product_sub_category, product_category, SUM(sales) as sales, SUM(discount_value) as promotion_value, ROUND((sum(discount_value)/sum(sales))*100,2) as burn_rate_percentage
+SELECT YEAR(order_date) AS years, product_sub_category, product_category, SUM(sales) AS sales, SUM(discount_value) AS promotion_value, ROUND((sum(discount_value)/sum(sales))*100,2) AS burn_rate_percentage
 FROM dqlab_sales_store
-WHERE order_status = 'Order Finished' and YEAR(order_date) in ('2012')
+WHERE order_status = 'Order Finished' AND YEAR(order_date) IN ('2012')
 GROUP BY YEAR(order_date), product_sub_category, product_category
 ORDER BY YEAR(order_date),SUM(sales) DESC;
 
-#Output
+# Output
 +-------+--------------------------------+------------------+-----------+-----------------+----------------------+
 | years | product_sub_category           | product_category | sales     | promotion_value | burn_rate_percentage |
 +-------+--------------------------------+------------------+-----------+-----------------+----------------------+
